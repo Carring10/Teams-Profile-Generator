@@ -2,17 +2,22 @@ const Employee = require("../lib/Employee");
 
 describe("Employee", () => {
   describe("Initialization", () => {
-    it("should creat an obj with name, id, email, and role properties if it has valid arguments", () => {
-      // Arrange
-      const employee = new Employee("Piper", 839, "piper@dog.com", true);
+    it("should create an obj with name that is a string", () => {
+      const employee = new Employee("Piper", 9, "piper@mydog.com");
 
-      // Act
-
-      // Assert
       expect(employee.name).toBe("Piper");
-      expect(employee.id).toBe(839);
-      expect(employee.email).toBe("piper@dog.com");
-      expect(employee.role).toBe(true);
+    });
+
+    it("should have an id that is a valid number", () => {
+      const employee = new Employee("Piper", 9, "piper@mydog.com");
+
+      expect(employee.id).toBe(9);
+    });
+
+    it("should have an email that is a string", () => {
+      const employee = new Employee("Piper", 9, "piper@mydog.com");
+
+      expect(employee.email).toBe("piper@mydog.com");
     });
   });
 });

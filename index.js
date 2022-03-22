@@ -1,5 +1,15 @@
 // TODO: Packages needed for application.
 const inquirer = require("inquirer");
+const init = () => {
+  // set up first prompt
+  // .then (another prompt);
+  // .then (employee info)
+  // if statements
+  // process.exit(); to stop
+  // will conitnue
+  // add employee
+};
+
 const fs = require("fs");
 
 // TODO: Make an array of questions for user input.
@@ -33,42 +43,31 @@ const questions = inquirer
     },
   ])
   .then((answers) => {
-    addEngineer(answers);
-    addIntern(answers);
+    addEmployee(answers);
   })
   .catch((err) => console.log(err));
 
-function addEngineer(answers) {
+function addEmployee(answers) {
   if (answers.teamMember === "engineer") {
     inquirer.prompt([
       {
         type: "input",
-        message: "Engineers name: ",
-        name: "engineerName",
+        message: "Engineers name:",
+        name: "employeeName",
       },
       {
         type: "input",
         message: "What is their id number?",
-        name: "engineerId",
+        name: "employeeId",
       },
-    ]);
-  }
-
-  if (answers.teamMember === "Finish building my team") {
-    finalizeTeam(answers);
-  }
-}
-
-function addIntern(answers) {
-  if (answers.teamMember === "intern") {
-    inquirer.prompt([
       {
         type: "input",
-        message: "Does it work?",
-        name: "test",
+        message: "What is their email?",
+        name: "employeeEmail",
       },
     ]);
   }
+
   if (answers.teamMember === "Finish building my team") {
     finalizeTeam(answers);
   }
@@ -106,3 +105,6 @@ function generateHTMLPage(answers) {
         </body>
         </html>`;
 }
+
+// const names = ["",]
+// name els = ${names.map(name => `<h2>${name}<h2>`)}
