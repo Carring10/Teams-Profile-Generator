@@ -28,12 +28,40 @@ describe("Engineer", () => {
   });
 });
 
-// TODO: Can get name.
+describe("method", () => {
+  describe("getName", () => {
+    it("returns the name", () => {
+      const engineer = new Engineer("Piper", 9, "piper@mydog.com", "iluvbones9");
 
-// TODO: Can get ID.
+      expect(engineer.getName()).toBe("Piper");
+    });
+  });
+  describe("getId", () => {
+    it("returns the id", () => {
+      const engineer = new Engineer("Piper", 9, "piper@mydog.com", "iluvbones9");
 
-// TODO: Can get Email.
+      expect(engineer.getId()).toBe(9);
+    });
+  });
+  describe("getEmail", () => {
+    it("returns the email", () => {
+      const engineer = new Engineer("Piper", 9, "piper@mydog.com", "iluvbones9");
 
-// TODO: Can get github.
+      expect(engineer.getEmail()).toBe("piper@mydog.com");
+    });
+  });
+  describe("getGitHub", () => {
+    it("returns the officeNumber", () => {
+      const engineer = new Engineer("Piper", 9, "piper@mydog.com", "iluvbones9");
 
-// TODO: Can get role - overwritten to return 'Engineer'.
+      expect(engineer.getEmail()).toBe("piper@mydog.com");
+    });
+  });
+  describe("getRole", () => {
+    it("returns the name", () => {
+      const engineer = new Engineer("Piper", 9, "piper@mydog.com", "iluvbones9");
+
+      expect(engineer.getRole()).toBe("Engineer");
+    });
+  });
+});

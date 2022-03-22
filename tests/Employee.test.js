@@ -22,10 +22,33 @@ describe("Employee", () => {
   });
 });
 
-// TODO: Can get name.
+describe("method", () => {
+  describe("getName", () => {
+    it("returns the name", () => {
+      const employee = new Employee("Piper", 9, "piper@mydog.com");
 
-// TODO: Can get ID.
+      expect(employee.getName()).toBe("Piper");
+    });
+  });
+  describe("getId", () => {
+    it("returns the id", () => {
+      const employee = new Employee("Piper", 9, "piper@mydog.com");
 
-// TODO: Can get Email.
+      expect(employee.getId()).toBe(9);
+    });
+  });
+  describe("getEmail", () => {
+    it("returns the email", () => {
+      const employee = new Employee("Piper", 9, "piper@mydog.com");
 
-// TODO: Can get role, returns 'Employee'.
+      expect(employee.getEmail()).toBe("piper@mydog.com");
+    });
+  });
+  describe("getRole", () => {
+    it("returns the name", () => {
+      const employee = new Employee("Piper", 9, "piper@mydog.com");
+
+      expect(employee.getRole()).toBe("Employee");
+    });
+  });
+});

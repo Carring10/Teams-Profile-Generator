@@ -28,12 +28,40 @@ describe("Manager", () => {
   });
 });
 
-// TODO: Can get name.
+describe("method", () => {
+  describe("getName", () => {
+    it("returns the name", () => {
+      const manager = new Manager("Piper", 9, "piper@mydog.com", 1);
 
-// TODO: Can get ID.
+      expect(manager.getName()).toBe("Piper");
+    });
+  });
+  describe("getId", () => {
+    it("returns the id", () => {
+      const manager = new Manager("Piper", 9, "piper@mydog.com", 1);
 
-// TODO: Can get Email.
+      expect(manager.getId()).toBe(9);
+    });
+  });
+  describe("getEmail", () => {
+    it("returns the email", () => {
+      const manager = new Manager("Piper", 9, "piper@mydog.com", 1);
 
-// TODO: Can get office number.
+      expect(manager.getEmail()).toBe("piper@mydog.com");
+    });
+  });
+  describe("officeNumber", () => {
+    it("returns the officeNumber", () => {
+      const manager = new Manager("Piper", 9, "piper@mydog.com", 1);
 
-// TODO: Can get role - overwritten to return 'Manager'.
+      expect(manager.getEmail()).toBe("piper@mydog.com");
+    });
+  });
+  describe("getRole", () => {
+    it("returns the name", () => {
+      const manager = new Manager("Piper", 9, "piper@mydog.com", 1);
+
+      expect(manager.getRole()).toBe("Manager");
+    });
+  });
+});
