@@ -23,7 +23,7 @@ describe("Intern", () => {
     it("should have an office number that is a number", () => {
       const intern = new Intern("Piper", 9, "piper@mydog.com", "Lick A Lot University");
 
-      expect(intern.officeNumber).toBe(1);
+      expect(intern.school).toBe("Lick A Lot University");
     });
   });
 });
@@ -54,7 +54,7 @@ describe("method", () => {
     it("returns the school", () => {
       const intern = new Intern("Piper", 9, "piper@mydog.com", "Lick A Lot University");
 
-      expect(intern.getEmail()).toBe("piper@mydog.com");
+      expect(intern.getSchool()).toBe("Lick A Lot University");
     });
   });
   describe("getRole", () => {
