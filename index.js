@@ -1,16 +1,13 @@
 // TODO: Packages needed for application.
 const inquirer = require("inquirer");
-const init = () => {
-  // set up first prompt
-  // .then (another prompt);
-  // .then (employee info)
-  // if statements
-  // process.exit(); to stop
-  // will conitnue
-  // add employee
-};
-
 const fs = require("fs");
+
+const generateHTMLPage = require("./src/template.js");
+
+const Employee = require("./lib/Employee.js");
+const Manager = require("./lib/Manager.js");
+const Engineer = require("./lib/Engineer.js");
+const Intern = require("./lib/Intern.js");
 
 // TODO: Make an array of questions for user input.
 const questions = inquirer
@@ -35,39 +32,97 @@ const questions = inquirer
       message: "What is their office number?",
       name: "officeNumber",
     },
-    {
-      type: "list",
-      name: "teamMember",
-      message: "Would you like to add an engineer or intern?",
-      choices: ["engineer", "intern", "Finish building my team"],
-    },
   ])
   .then((answers) => {
     addEmployee(answers);
+    const manager = new Manager(
+      answers.managerName,
+      answers.id,
+      answers.email,
+      answers.officeNumber
+    );
+    console.log(manager);
   })
   .catch((err) => console.log(err));
 
 function addEmployee(answers) {
-  if (answers.teamMember === "engineer") {
-    inquirer.prompt([
+  inquirer
+    .prompt([
       {
-        type: "input",
-        message: "Engineers name:",
-        name: "employeeName",
+        type: "rawlist",
+        name: "teamMember",
+        message: "Would you like to add an engineer or intern?",
+        choices: ["Engineer", "Intern", "Finish building my team"],
       },
-      {
-        type: "input",
-        message: "What is their id number?",
-        name: "employeeId",
-      },
-      {
-        type: "input",
-        message: "What is their email?",
-        name: "employeeEmail",
-      },
-    ]);
-  }
+    ])
+    .then((answers) => {
+      promptEmployeeQuestions(answers);
+    });
+}
 
+function promptEmployeeQuestions(answers) {
+  if (answers.teamMember === "Engineer") {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          message: "Engineer's name:",
+          name: "employeeName",
+        },
+        {
+          type: "input",
+          message: "What is their id number?",
+          name: "employeeId",
+        },
+        {
+          type: "input",
+          message: "What is their email?",
+          name: "employeeEmail",
+        },
+        {
+          type: "input",
+          message: "What is their GitHub username?",
+          name: "github",
+        },
+      ])
+      .then((answers) => {
+        addEmployee(answers);
+        const engineer = new Engineer(
+          answers.employeeName,
+          answers.employeeId,
+          answers.employeeEmail,
+          answers.github
+        );
+        console.log(engineer);
+      });
+  } else if (answers.teamMember === "Intern") {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          message: "intern's name:",
+          name: "employeeName",
+        },
+        {
+          type: "input",
+          message: "What is their id number?",
+          name: "employeeId",
+        },
+        {
+          type: "input",
+          message: "What is their email?",
+          name: "employeeEmail",
+        },
+        {
+          type: "input",
+          message: "What school do they attend?",
+          name: "school",
+        },
+      ])
+      .then((answers) => {
+        addEmployee(answers);
+      });
+  }
   if (answers.teamMember === "Finish building my team") {
     finalizeTeam(answers);
   }
@@ -85,26 +140,6 @@ function writeToFile(filePath, answers) {
 }
 
 // TODO: Make a function to generated HTML page.
-function generateHTMLPage(answers) {
-  return `<!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title></title>
-        </head>
-        <body>
-          <h1>${answers["managerName"]}</h1>
-          <p>${answers["id"]}</p>
-          <p>${answers["email"]}</p>
-          <p>${answers["officeNumber"]}</p>
-
-          <h1>${answers["engineerName"]}</h1>
-          <p>${answers["engineerId"]}</p>
-        </body>
-        </html>`;
-}
 
 // const names = ["",]
 // name els = ${names.map(name => `<h2>${name}<h2>`)}
