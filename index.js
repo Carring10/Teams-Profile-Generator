@@ -64,7 +64,6 @@ function addEmployee() {
 }
 
 function promptEmployeeQuestions(answers) {
-  console.log(answers);
   if (answers.teamMember === "Engineer") {
     inquirer
       .prompt([
@@ -125,7 +124,6 @@ function promptEmployeeQuestions(answers) {
         },
       ])
       .then((answers) => {
-        console.log("here", answers);
         addEmployee(answers);
 
         const intern = new Intern(
@@ -135,7 +133,6 @@ function promptEmployeeQuestions(answers) {
           answers.school
         );
         employeeArr.push(intern);
-        console.log("array", employeeArr);
       });
   }
 
