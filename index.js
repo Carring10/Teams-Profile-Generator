@@ -138,23 +138,19 @@ function promptEmployeeQuestions(answers) {
         console.log("array", employeeArr);
       });
   }
+
   if (answers.teamMember === "Finish building my team") {
-    finalizeTeam(answers);
+    finalizeTeam(answers, employeeArr);
   }
 }
 
-function finalizeTeam(employeeArr) {
-  writeToFile("./dist/index.html", employeeArr);
+function finalizeTeam(answers, employeeArr) {
+  writeToFile("./dist/index.html", answers, employeeArr);
 }
 
 // TODO: Make a function to write HTML page.
-function writeToFile(filePath, answers) {
-  fs.writeFile(filePath, generateHTMLPage(answers), (err) => {
+function writeToFile(filePath, answers, employeeArr) {
+  fs.writeFile(filePath, generateHTMLPage(employeeArr), (err) => {
     err ? console.error(err) : console.log("Success!");
   });
 }
-
-// TODO: Make a function to generated HTML page.
-
-// const names = ["",]
-// name els = ${names.map(name => `<h2>${name}<h2>`)}
