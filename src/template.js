@@ -1,5 +1,5 @@
 function generateHTMLPage(answers) {
-  return `<!DOCTYPE html>
+  const htmlTemplate = `<!DOCTYPE html>
         <html lang="en">
         <head>
           <meta charset="UTF-8">
@@ -8,15 +8,16 @@ function generateHTMLPage(answers) {
           <title></title>
         </head>
         <body>
-          <h1>${answers["managerName"]}</h1>
-          <p>${answers["id"]}</p>
-          <p>${answers["email"]}</p>
-          <p>${answers["officeNumber"]}</p>
+          <h1>${answers.managerName}</h1>
+          <p>${answers.id}</p>
+          <p>${answers.email}</p>
+          <p>${answers.officeNumber}</p>
 
           <h1>${answers["engineerName"]}</h1>
           <p>${answers["engineerId"]}</p>
         </body>
         </html>`;
+  return htmlTemplate;
 }
 
 module.exports = generateHTMLPage;

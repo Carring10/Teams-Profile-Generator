@@ -9,6 +9,8 @@ const Manager = require("./lib/Manager.js");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 
+const employeeArr = [];
+
 // TODO: Make an array of questions for user input.
 const questions = inquirer
   .prompt([
@@ -35,17 +37,18 @@ const questions = inquirer
   ])
   .then((answers) => {
     addEmployee(answers);
+
     const manager = new Manager(
       answers.managerName,
       answers.id,
       answers.email,
       answers.officeNumber
     );
-    console.log(manager);
+    employeeArr.push(manager);
   })
   .catch((err) => console.log(err));
 
-function addEmployee(answers) {
+function addEmployee() {
   inquirer
     .prompt([
       {
@@ -61,6 +64,7 @@ function addEmployee(answers) {
 }
 
 function promptEmployeeQuestions(answers) {
+  console.log(answers);
   if (answers.teamMember === "Engineer") {
     inquirer
       .prompt([
@@ -86,14 +90,15 @@ function promptEmployeeQuestions(answers) {
         },
       ])
       .then((answers) => {
-        addEmployee(answers);
         const engineer = new Engineer(
           answers.employeeName,
           answers.employeeId,
           answers.employeeEmail,
           answers.github
         );
-        console.log(engineer);
+        employeeArr.push(engineer);
+
+        addEmployee(answers);
       });
   } else if (answers.teamMember === "Intern") {
     inquirer
@@ -120,7 +125,17 @@ function promptEmployeeQuestions(answers) {
         },
       ])
       .then((answers) => {
+        console.log("here", answers);
         addEmployee(answers);
+
+        const intern = new Intern(
+          answers.employeeName,
+          answers.employeeId,
+          answers.employeeEmail,
+          answers.school
+        );
+        employeeArr.push(intern);
+        console.log("array", employeeArr);
       });
   }
   if (answers.teamMember === "Finish building my team") {
@@ -128,8 +143,8 @@ function promptEmployeeQuestions(answers) {
   }
 }
 
-function finalizeTeam(answers) {
-  writeToFile("./dist/index.html", answers);
+function finalizeTeam(employeeArr) {
+  writeToFile("./dist/index.html", employeeArr);
 }
 
 // TODO: Make a function to write HTML page.
